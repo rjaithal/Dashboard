@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PCMS_DATABASEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PCMS_DATABASEModelStoreContainer">
+          <EntitySet Name="pcms_admin" EntityType="PCMS_DATABASEModel.Store.pcms_admin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_analytics" EntityType="PCMS_DATABASEModel.Store.pcms_analytics" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_audit_trails" EntityType="PCMS_DATABASEModel.Store.pcms_audit_trails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_campaign" EntityType="PCMS_DATABASEModel.Store.pcms_campaign" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_content" EntityType="PCMS_DATABASEModel.Store.pcms_content" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_country_list" EntityType="PCMS_DATABASEModel.Store.pcms_country_list" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_design" EntityType="PCMS_DATABASEModel.Store.pcms_design" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_popup" EntityType="PCMS_DATABASEModel.Store.pcms_popup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_rules" EntityType="PCMS_DATABASEModel.Store.pcms_rules" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_user" EntityType="PCMS_DATABASEModel.Store.pcms_user" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pcms_website" EntityType="PCMS_DATABASEModel.Store.pcms_website" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="pcms_admin">
+          <Key>
+            <PropertyRef Name="ADMIN_PK" />
+          </Key>
+          <Property Name="ADMIN_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ADMIN_ID" Type="int" Nullable="false" />
+          <Property Name="ADMIN_USERNAME" Type="nvarchar" MaxLength="16" />
+          <Property Name="ADMIN_PASSWORD" Type="nvarchar" MaxLength="16" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="16" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="16" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_analytics">
+          <Key>
+            <PropertyRef Name="ANALYTICS_KEY" />
+          </Key>
+          <Property Name="ANALYTICS_KEY" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="USER_ACTIVITY_LOG" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_audit_trails">
+          <Key>
+            <PropertyRef Name="AUDIT_PK" />
+          </Key>
+          <Property Name="AUDIT_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AUDIT_ID" Type="int" />
+          <Property Name="AUDIT_CATEGORY" Type="varchar" MaxLength="50" />
+          <Property Name="AUDIT_DESCRIPTION" Type="nvarchar(max)" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_campaign">
+          <Key>
+            <PropertyRef Name="PK_CAMPAIGN" />
+          </Key>
+          <Property Name="PK_CAMPAIGN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CAMPAIGN_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAMPAIGN_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="CAMPAIGN_DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CAMPAIGN_START_DATE" Type="datetime" />
+          <Property Name="CAMPAIGN_END_DATE" Type="datetime" />
+          <Property Name="CAMPAIGN_STATUS" Type="varchar" MaxLength="10" />
+          <Property Name="CAMPAIGN_DESIGN_ID" Type="int" />
+          <Property Name="CAMPAIGN_CONTENT_ID" Type="int" />
+          <Property Name="CAMPAIGN_POPUP_STATUS" Type="varchar" MaxLength="16" />
+          <Property Name="CAMPAIGN_POPUP_ID" Type="int" />
+          <Property Name="CAMPAIGN_RULE_ID" Type="int" />
+          <Property Name="CAMPAIGN_URL" Type="nvarchar(max)" />
+          <Property Name="CAMPAIGN_REDIRECT_URL" Type="nvarchar(max)" />
+          <Property Name="CAMPAIGN_FIELDS" Type="nvarchar(max)" />
+          <Property Name="CAMPAIGN_CONTAINER_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="16" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="16" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_content">
+          <Key>
+            <PropertyRef Name="CONTENT_PK" />
+          </Key>
+          <Property Name="CONTENT_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CONTENT_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CONTENT_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="CONTENT_DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CONTENT_HTML" Type="nvarchar(max)" />
+          <Property Name="CONTENT_FIELDS" Type="nvarchar(max)" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="CONTENT_ISDELETED" Type="bit" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_country_list">
+          <Key>
+            <PropertyRef Name="COUNTRY_PK" />
+          </Key>
+          <Property Name="COUNTRY_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COUNTRY_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="COUNTRY_CODE" Type="nvarchar" MaxLength="8" />
+          <Property Name="COUNTRY_NAME" Type="nvarchar" MaxLength="500" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_design">
+          <Key>
+            <PropertyRef Name="DESIGN_PK" />
+          </Key>
+          <Property Name="DESIGN_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DESIGN_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DESIGN_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="DESIGN_DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DESIGN_HTML" Type="nvarchar(max)" />
+          <Property Name="DESIGN_FIELDS" Type="nvarchar(max)" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="DESIGN_ISDELETED" Type="bit" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_popup">
+          <Key>
+            <PropertyRef Name="POPUP_PK" />
+          </Key>
+          <Property Name="POPUP_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="POPUP_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="POPUP_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="POPUP_DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="POPUP_HTML" Type="nvarchar(max)" />
+          <Property Name="POPUP_FIELDS" Type="nvarchar(max)" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="POPUP_ISDELETED" Type="bit" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_rules">
+          <Key>
+            <PropertyRef Name="RULE_PK" />
+          </Key>
+          <Property Name="RULE_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RULE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RULE_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="RULE_DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="RULE_LOCATION" Type="nvarchar" MaxLength="200" />
+          <Property Name="RULE_USER_TYPE" Type="nvarchar" MaxLength="16" />
+          <Property Name="RULE_PARAMETER_KEY_VALUE" Type="nvarchar(max)" />
+          <Property Name="RULE_APPLIED_URL" Type="nvarchar(max)" />
+          <Property Name="RULE_ISDELETED" Type="bit" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="RULE_FIELDS" Type="nvarchar(max)" />
+          <Property Name="WEBSITE_URL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_user">
+          <Key>
+            <PropertyRef Name="USER_PK" />
+          </Key>
+          <Property Name="USER_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="USER_ID" Type="int" />
+          <Property Name="USER_IP" Type="nvarchar" MaxLength="16" />
+          <Property Name="USER_GENDER" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_CITY" Type="nvarchar" MaxLength="100" />
+          <Property Name="USER_URL" Type="nvarchar(max)" />
+          <Property Name="USER_BROWSER" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_COUNTRY_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="USER_REGION" Type="nchar" MaxLength="50" />
+          <Property Name="USER_TIMEZONE" Type="nvarchar" MaxLength="100" />
+          <Property Name="USER_ZIP" Type="nvarchar" MaxLength="10" />
+          <Property Name="USER_TYPE" Type="varchar" MaxLength="16" />
+          <Property Name="COOKIE_CREATION_DATE" Type="datetime" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+        <EntityType Name="pcms_website">
+          <Key>
+            <PropertyRef Name="WEBSITE_PK" />
+          </Key>
+          <Property Name="WEBSITE_PK" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WEBSITE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WEBSITE_URL" Type="nvarchar(max)" />
+          <Property Name="WEBSITE_SITEMAP_URL" Type="nvarchar(max)" />
+          <Property Name="SDK_VERIFIED" Type="bit" />
+          <Property Name="INSERTED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INSERTED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="TS_CNT" Type="int" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PCMS_DATABASEModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PCMS_DbContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="pcms_admin" EntityType="PCMS_DATABASEModel.pcms_admin" />
+          <EntitySet Name="pcms_analytics" EntityType="PCMS_DATABASEModel.pcms_analytics" />
+          <EntitySet Name="pcms_audit_trails" EntityType="PCMS_DATABASEModel.pcms_audit_trails" />
+          <EntitySet Name="pcms_content" EntityType="PCMS_DATABASEModel.pcms_content" />
+          <EntitySet Name="pcms_country_list" EntityType="PCMS_DATABASEModel.pcms_country_list" />
+          <EntitySet Name="pcms_design" EntityType="PCMS_DATABASEModel.pcms_design" />
+          <EntitySet Name="pcms_popup" EntityType="PCMS_DATABASEModel.pcms_popup" />
+          <EntitySet Name="pcms_rules" EntityType="PCMS_DATABASEModel.pcms_rules" />
+          <EntitySet Name="pcms_user" EntityType="PCMS_DATABASEModel.pcms_user" />
+          <EntitySet Name="pcms_website" EntityType="PCMS_DATABASEModel.pcms_website" />
+          <EntitySet Name="pcms_campaign" EntityType="PCMS_DATABASEModel.pcms_campaign" />
+        </EntityContainer>
+        <EntityType Name="pcms_admin">
+          <Key>
+            <PropertyRef Name="ADMIN_PK" />
+          </Key>
+          <Property Name="ADMIN_PK" Type="Guid" Nullable="false" />
+          <Property Name="ADMIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="ADMIN_USERNAME" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="ADMIN_PASSWORD" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_analytics">
+          <Key>
+            <PropertyRef Name="ANALYTICS_KEY" />
+          </Key>
+          <Property Name="ANALYTICS_KEY" Type="Guid" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ACTIVITY_LOG" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_audit_trails">
+          <Key>
+            <PropertyRef Name="AUDIT_PK" />
+          </Key>
+          <Property Name="AUDIT_PK" Type="Guid" Nullable="false" />
+          <Property Name="AUDIT_ID" Type="Int32" />
+          <Property Name="AUDIT_CATEGORY" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="AUDIT_DESCRIPTION" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_content">
+          <Key>
+            <PropertyRef Name="CONTENT_PK" />
+          </Key>
+          <Property Name="CONTENT_PK" Type="Guid" Nullable="false" />
+          <Property Name="CONTENT_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CONTENT_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CONTENT_DESCRIPTION" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="CONTENT_HTML" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CONTENT_FIELDS" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CONTENT_ISDELETED" Type="Boolean" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_country_list">
+          <Key>
+            <PropertyRef Name="COUNTRY_PK" />
+          </Key>
+          <Property Name="COUNTRY_PK" Type="Guid" Nullable="false" />
+          <Property Name="COUNTRY_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="COUNTRY_CODE" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="COUNTRY_NAME" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_design">
+          <Key>
+            <PropertyRef Name="DESIGN_PK" />
+          </Key>
+          <Property Name="DESIGN_PK" Type="Guid" Nullable="false" />
+          <Property Name="DESIGN_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DESIGN_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DESIGN_DESCRIPTION" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="DESIGN_HTML" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DESIGN_FIELDS" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="DESIGN_ISDELETED" Type="Boolean" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_popup">
+          <Key>
+            <PropertyRef Name="POPUP_PK" />
+          </Key>
+          <Property Name="POPUP_PK" Type="Guid" Nullable="false" />
+          <Property Name="POPUP_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="POPUP_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="POPUP_DESCRIPTION" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="POPUP_HTML" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="POPUP_FIELDS" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="POPUP_ISDELETED" Type="Boolean" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_rules">
+          <Key>
+            <PropertyRef Name="RULE_PK" />
+          </Key>
+          <Property Name="RULE_PK" Type="Guid" Nullable="false" />
+          <Property Name="RULE_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RULE_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RULE_DESCRIPTION" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="RULE_LOCATION" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="RULE_USER_TYPE" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="RULE_PARAMETER_KEY_VALUE" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RULE_APPLIED_URL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RULE_ISDELETED" Type="Boolean" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="RULE_FIELDS" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="WEBSITE_URL" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_user">
+          <Key>
+            <PropertyRef Name="USER_PK" />
+          </Key>
+          <Property Name="USER_PK" Type="Guid" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="USER_IP" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="USER_GENDER" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="USER_CITY" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="USER_URL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="USER_BROWSER" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="USER_COUNTRY_NAME" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="USER_REGION" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="USER_TIMEZONE" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="USER_ZIP" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="USER_TYPE" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="COOKIE_CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_website">
+          <Key>
+            <PropertyRef Name="WEBSITE_PK" />
+          </Key>
+          <Property Name="WEBSITE_PK" Type="Guid" Nullable="false" />
+          <Property Name="WEBSITE_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="WEBSITE_URL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="WEBSITE_SITEMAP_URL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SDK_VERIFIED" Type="Boolean" />
+          <Property Name="INSERTED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INSERTED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TS_CNT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pcms_campaign">
+          <Key>
+            <PropertyRef Name="PK_CAMPAIGN" />
+          </Key>
+          <Property Type="Guid" Name="PK_CAMPAIGN" Nullable="false" />
+          <Property Type="Int32" Name="CAMPAIGN_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CAMPAIGN_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CAMPAIGN_DESCRIPTION" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CAMPAIGN_START_DATE" Precision="3" />
+          <Property Type="DateTime" Name="CAMPAIGN_END_DATE" Precision="3" />
+          <Property Type="String" Name="CAMPAIGN_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CAMPAIGN_DESIGN_ID" />
+          <Property Type="Int32" Name="CAMPAIGN_CONTENT_ID" />
+          <Property Type="String" Name="CAMPAIGN_POPUP_STATUS" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CAMPAIGN_POPUP_ID" />
+          <Property Type="Int32" Name="CAMPAIGN_RULE_ID" />
+          <Property Type="String" Name="CAMPAIGN_URL" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CAMPAIGN_REDIRECT_URL" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CAMPAIGN_FIELDS" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CAMPAIGN_CONTAINER_ID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="INSERTED_BY" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="INSERTED_DATE" Precision="3" />
+          <Property Type="String" Name="UPDATED_BY" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATED_DATE" Precision="3" />
+          <Property Type="Int32" Name="TS_CNT" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PCMS_DATABASEModelStoreContainer" CdmEntityContainer="PCMS_DbContext">
+          <EntitySetMapping Name="pcms_admin">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_admin">
+              <MappingFragment StoreEntitySet="pcms_admin">
+                <ScalarProperty Name="ADMIN_PK" ColumnName="ADMIN_PK" />
+                <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
+                <ScalarProperty Name="ADMIN_USERNAME" ColumnName="ADMIN_USERNAME" />
+                <ScalarProperty Name="ADMIN_PASSWORD" ColumnName="ADMIN_PASSWORD" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_analytics">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_analytics">
+              <MappingFragment StoreEntitySet="pcms_analytics">
+                <ScalarProperty Name="ANALYTICS_KEY" ColumnName="ANALYTICS_KEY" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_ACTIVITY_LOG" ColumnName="USER_ACTIVITY_LOG" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_audit_trails">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_audit_trails">
+              <MappingFragment StoreEntitySet="pcms_audit_trails">
+                <ScalarProperty Name="AUDIT_PK" ColumnName="AUDIT_PK" />
+                <ScalarProperty Name="AUDIT_ID" ColumnName="AUDIT_ID" />
+                <ScalarProperty Name="AUDIT_CATEGORY" ColumnName="AUDIT_CATEGORY" />
+                <ScalarProperty Name="AUDIT_DESCRIPTION" ColumnName="AUDIT_DESCRIPTION" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_content">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_content">
+              <MappingFragment StoreEntitySet="pcms_content">
+                <ScalarProperty Name="CONTENT_PK" ColumnName="CONTENT_PK" />
+                <ScalarProperty Name="CONTENT_ID" ColumnName="CONTENT_ID" />
+                <ScalarProperty Name="CONTENT_NAME" ColumnName="CONTENT_NAME" />
+                <ScalarProperty Name="CONTENT_DESCRIPTION" ColumnName="CONTENT_DESCRIPTION" />
+                <ScalarProperty Name="CONTENT_HTML" ColumnName="CONTENT_HTML" />
+                <ScalarProperty Name="CONTENT_FIELDS" ColumnName="CONTENT_FIELDS" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="CONTENT_ISDELETED" ColumnName="CONTENT_ISDELETED" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_country_list">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_country_list">
+              <MappingFragment StoreEntitySet="pcms_country_list">
+                <ScalarProperty Name="COUNTRY_PK" ColumnName="COUNTRY_PK" />
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+                <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+                <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_design">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_design">
+              <MappingFragment StoreEntitySet="pcms_design">
+                <ScalarProperty Name="DESIGN_PK" ColumnName="DESIGN_PK" />
+                <ScalarProperty Name="DESIGN_ID" ColumnName="DESIGN_ID" />
+                <ScalarProperty Name="DESIGN_NAME" ColumnName="DESIGN_NAME" />
+                <ScalarProperty Name="DESIGN_DESCRIPTION" ColumnName="DESIGN_DESCRIPTION" />
+                <ScalarProperty Name="DESIGN_HTML" ColumnName="DESIGN_HTML" />
+                <ScalarProperty Name="DESIGN_FIELDS" ColumnName="DESIGN_FIELDS" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="DESIGN_ISDELETED" ColumnName="DESIGN_ISDELETED" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_popup">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_popup">
+              <MappingFragment StoreEntitySet="pcms_popup">
+                <ScalarProperty Name="POPUP_PK" ColumnName="POPUP_PK" />
+                <ScalarProperty Name="POPUP_ID" ColumnName="POPUP_ID" />
+                <ScalarProperty Name="POPUP_NAME" ColumnName="POPUP_NAME" />
+                <ScalarProperty Name="POPUP_DESCRIPTION" ColumnName="POPUP_DESCRIPTION" />
+                <ScalarProperty Name="POPUP_HTML" ColumnName="POPUP_HTML" />
+                <ScalarProperty Name="POPUP_FIELDS" ColumnName="POPUP_FIELDS" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="POPUP_ISDELETED" ColumnName="POPUP_ISDELETED" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_rules">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_rules">
+              <MappingFragment StoreEntitySet="pcms_rules">
+                <ScalarProperty Name="RULE_PK" ColumnName="RULE_PK" />
+                <ScalarProperty Name="RULE_ID" ColumnName="RULE_ID" />
+                <ScalarProperty Name="RULE_NAME" ColumnName="RULE_NAME" />
+                <ScalarProperty Name="RULE_DESCRIPTION" ColumnName="RULE_DESCRIPTION" />
+                <ScalarProperty Name="RULE_LOCATION" ColumnName="RULE_LOCATION" />
+                <ScalarProperty Name="RULE_USER_TYPE" ColumnName="RULE_USER_TYPE" />
+                <ScalarProperty Name="RULE_PARAMETER_KEY_VALUE" ColumnName="RULE_PARAMETER_KEY_VALUE" />
+                <ScalarProperty Name="RULE_APPLIED_URL" ColumnName="RULE_APPLIED_URL" />
+                <ScalarProperty Name="RULE_ISDELETED" ColumnName="RULE_ISDELETED" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="RULE_FIELDS" ColumnName="RULE_FIELDS" />
+                <ScalarProperty Name="WEBSITE_URL" ColumnName="WEBSITE_URL" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_user">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_user">
+              <MappingFragment StoreEntitySet="pcms_user">
+                <ScalarProperty Name="USER_PK" ColumnName="USER_PK" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_IP" ColumnName="USER_IP" />
+                <ScalarProperty Name="USER_GENDER" ColumnName="USER_GENDER" />
+                <ScalarProperty Name="USER_CITY" ColumnName="USER_CITY" />
+                <ScalarProperty Name="USER_URL" ColumnName="USER_URL" />
+                <ScalarProperty Name="USER_BROWSER" ColumnName="USER_BROWSER" />
+                <ScalarProperty Name="USER_COUNTRY_NAME" ColumnName="USER_COUNTRY_NAME" />
+                <ScalarProperty Name="USER_REGION" ColumnName="USER_REGION" />
+                <ScalarProperty Name="USER_TIMEZONE" ColumnName="USER_TIMEZONE" />
+                <ScalarProperty Name="USER_ZIP" ColumnName="USER_ZIP" />
+                <ScalarProperty Name="USER_TYPE" ColumnName="USER_TYPE" />
+                <ScalarProperty Name="COOKIE_CREATION_DATE" ColumnName="COOKIE_CREATION_DATE" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_website">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_website">
+              <MappingFragment StoreEntitySet="pcms_website">
+                <ScalarProperty Name="WEBSITE_PK" ColumnName="WEBSITE_PK" />
+                <ScalarProperty Name="WEBSITE_ID" ColumnName="WEBSITE_ID" />
+                <ScalarProperty Name="WEBSITE_URL" ColumnName="WEBSITE_URL" />
+                <ScalarProperty Name="WEBSITE_SITEMAP_URL" ColumnName="WEBSITE_SITEMAP_URL" />
+                <ScalarProperty Name="SDK_VERIFIED" ColumnName="SDK_VERIFIED" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pcms_campaign">
+            <EntityTypeMapping TypeName="PCMS_DATABASEModel.pcms_campaign">
+              <MappingFragment StoreEntitySet="pcms_campaign">
+                <ScalarProperty Name="TS_CNT" ColumnName="TS_CNT" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="INSERTED_DATE" ColumnName="INSERTED_DATE" />
+                <ScalarProperty Name="INSERTED_BY" ColumnName="INSERTED_BY" />
+                <ScalarProperty Name="CAMPAIGN_CONTAINER_ID" ColumnName="CAMPAIGN_CONTAINER_ID" />
+                <ScalarProperty Name="CAMPAIGN_FIELDS" ColumnName="CAMPAIGN_FIELDS" />
+                <ScalarProperty Name="CAMPAIGN_REDIRECT_URL" ColumnName="CAMPAIGN_REDIRECT_URL" />
+                <ScalarProperty Name="CAMPAIGN_URL" ColumnName="CAMPAIGN_URL" />
+                <ScalarProperty Name="CAMPAIGN_RULE_ID" ColumnName="CAMPAIGN_RULE_ID" />
+                <ScalarProperty Name="CAMPAIGN_POPUP_ID" ColumnName="CAMPAIGN_POPUP_ID" />
+                <ScalarProperty Name="CAMPAIGN_POPUP_STATUS" ColumnName="CAMPAIGN_POPUP_STATUS" />
+                <ScalarProperty Name="CAMPAIGN_CONTENT_ID" ColumnName="CAMPAIGN_CONTENT_ID" />
+                <ScalarProperty Name="CAMPAIGN_DESIGN_ID" ColumnName="CAMPAIGN_DESIGN_ID" />
+                <ScalarProperty Name="CAMPAIGN_STATUS" ColumnName="CAMPAIGN_STATUS" />
+                <ScalarProperty Name="CAMPAIGN_END_DATE" ColumnName="CAMPAIGN_END_DATE" />
+                <ScalarProperty Name="CAMPAIGN_START_DATE" ColumnName="CAMPAIGN_START_DATE" />
+                <ScalarProperty Name="CAMPAIGN_DESCRIPTION" ColumnName="CAMPAIGN_DESCRIPTION" />
+                <ScalarProperty Name="CAMPAIGN_NAME" ColumnName="CAMPAIGN_NAME" />
+                <ScalarProperty Name="CAMPAIGN_ID" ColumnName="CAMPAIGN_ID" />
+                <ScalarProperty Name="PK_CAMPAIGN" ColumnName="PK_CAMPAIGN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

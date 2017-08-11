@@ -1,0 +1,9 @@
+﻿@model IEnumerable<PCMS_Library.pcms_country_list>
+
+<select id="Location" name="location" class="form-control">
+    <option value="">--SELECT--</option>
+    @foreach (var item in @Model)
+    {
+        <option value="@item.COUNTRY_NAME">@item.COUNTRY_NAME</option>
+    }
+</select>

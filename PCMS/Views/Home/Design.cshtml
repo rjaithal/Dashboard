@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PCMS_Library.pcms_design>
+
+@{
+    ViewBag.Title = "Design";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Design </h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <a class='btn btn-primary' href="@Url.Action("AddDesign", "home", null)"><i class='fa fa-pencil'></i>Create Design</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-md-55">
+                                    <div class="thumbnail">
+                                        <div class="image view view-first">
+                                            <h1>@item.DESIGN_NAME</h1>
+                                            <div class="mask">
+                                                <p>@item.DESIGN_DESCRIPTION</p>
+                                                <div class="tools tools-bottom">
+                                                    <a class="btn btn-primary" href="@Url.Action("EditDesign", "Home", new { query = @item.DESIGN_ID })"><i class="fa fa-pencil"></i></a>
+
+                                                    <a href='@Url.Action("DeleteDesign", "Home", new { query = @item.DESIGN_ID })' onClick="return confirm('Are you sure you want to delete?')"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="caption">
+                                            <p>@item.DESIGN_DESCRIPTION</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

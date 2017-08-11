@@ -1,0 +1,145 @@
+﻿@model IEnumerable<PCMS_Library.pcms_rules>
+@{
+    ViewBag.Title = "Rules";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Banner</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="row">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("Rules", "Home", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+                            if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-success alert-dismissable"><a href="@Url.Action("URLList", "Home")" class="close" data-dismiss="alert" aria-label="close">&times;</a>@ViewBag.Message. Would you like to <a href="@Url.Action("URLList", "Home")" class="">add another Rule?</a></div>
+                            }
+                            else
+                            {
+                                if (@Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                    
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Rule Applied on URL<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="url" name="url" required="required" disabled class="form-control col-md-7 col-xs-12" value='@item.RULE_APPLIED_URL'>
+                                    @{TempData["QUERY"] = item.RULE_ID;}
+                                      @{TempData["RULE_APPLIED_URL"] = item.RULE_APPLIED_URL;}
+                                    <input type="text" id="id" name="PK_Rule" required="required" disabled class="form-control hidden col-md-7 col-xs-12" value='@item.RULE_ID'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                    Rule Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="hidden" value="@item.WEBSITE_URL" name="WEBSITE_URL" />
+                                    <input type="text" id="last-name" name="rule-name" required="required" pattern="[a-zA-Z0-9-_#\\s]{2,150}" title="Maximum 150 characters allowed -_# special characters" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Location:</label>
+                                <div class='col-md-6 col-sm-6 col-xs-12'>
+                                    @{Html.RenderAction("GetCountryList", "Home");}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>User Type :</label>
+                                <div class='col-md-6 col-sm-6 col-xs-12'>
+                                    <select id="heard" name="user" class="form-control">
+                                        <option value="">Choose..</option>
+                                        <option value="Registered Users">Registered Users</option>
+                                        <option value="Anonymous Users">Anonymous Users</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Parameters:</label>
+                                <div class='col-md-6 col-sm-6 col-xs-12'>
+                                    <select id="param_key" class="form-control">
+                                        <option value="-1">Choose..</option>
+                                        <option value="Gender">Gender</option>
+                                        <option value="Device">Device</option>
+                                        <option value="Channel">Channel</option>
+                                        <option value="OS">OS</option>
+                                        <option value="Browser">Browser</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Parameter Values :</label>
+                                <div class='col-md-6 col-sm-6 col-xs-12'>
+                                    <select id="param_value" class="form-control">
+                                        <option value="-1">Choose..</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Mobile">Mobile</option>
+                                        <option value="Desktop">Desktop</option>
+                                        <option value="Tablet">Tablet</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Twitter">Twitter</option>
+                                        <option value="Email">Email</option>
+                                        <option value="Google">Google</option>
+                                        <option value="LinkedIn">LinkedIn</option>
+                                        <option value="Instagram">Instagram</option>
+                                        <option value="Android">Android</option>
+                                        <option value="iOS">iOS</option>
+                                        <option value="Windows">Windows</option>
+                                        <option value="MacOS">MacOS</option>
+                                        <option value="Linux">Linux</option>
+                                        <option value="Chrome">Chrome</option>
+                                        <option value="Firefox">Firefox</option>
+                                        <option value="IE">IE</option>
+                                        <option value="Safari">Safari</option>
+                                        <option value="Opera">Opera</option>
+                                        <option value="New User">New User</option>
+                                        <option value="Returning User">Returning User</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" type="button" id="append_rule">Append Rule</button>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="tags_1" type="text" class="tags form-control" value="" />
+
+                                    <input type="hidden" id="parameter_list" name="parameter_list" />
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
+                                    }
+                                }
+                                else
+                                {
+                            <div class="text-center">Parameter has been added <a href="@Url.Action("URLList", "Home")" class="btn btn-md btn-primary">Add new Rule</a></div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

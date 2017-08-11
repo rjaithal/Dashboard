@@ -1,0 +1,10 @@
+﻿@model IEnumerable<PCMS_Library.pcms_rules>
+
+<select id="rulelist" name="rulelister" class="form-control">
+    <option value="">Choose..</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.RULE_ID">@item.RULE_NAME</option>
+ 
+    }
+</select>

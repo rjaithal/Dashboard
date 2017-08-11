@@ -1,0 +1,72 @@
+﻿@model PCMS_Library.pcms_List
+
+@{
+    ViewBag.Title = "Website";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Website", "Home", FormMethod.Post))
+{
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Banner</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <div class="form-group">
+                                <div class="row">
+                                    @if (ViewBag.Message != null)
+                                    {
+                                        <div class="alert alert-success alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>@ViewBag.Message</div>
+                                    }
+                                </div>
+                                <div class="row">
+                                    <label class="control-label col-md-2 col-md-offset-1 col-sm-3 col-xs-12" for="first-name">
+                                        Website<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-10">
+                                        @Html.TextBoxFor(m => m.url[0].WEBSITE_URL, null, new { @class = "form-control col-md-7 col-xs-12 website_url", required = "", pattern = "[a-zA-Z-_#.0-9\\/:]{2,1500}", title = "only alphanumeric with -_#/ special characters allowed" })
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-1">
+                                        <img src="../images/ajax-loader.gif" id="ajax_loader" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="control-label col-md-offset-1 col-md-2 col-sm-3 col-xs-12" for="last-name">
+                                        Sitemap URL<span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBoxFor(m => m.url[0].WEBSITE_SITEMAP_URL, null, new { @class = "form-control col-md-7 col-xs-12", pattern = "[a-zA-Z-_#.0-9\\/:]{2,1500}", title = "only alphanumeric with -_#/ special characters allowed" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="font-size:80%;">
+                                    <span class="sdk_verification_message">SDK verified successfully.</span><br />
+                                    <span class="sdk_script" style="display: none;">
+                                        <code class="snippet">&lt;script type="text/javascript" src="pcmsDomain/pcmsweb.min.js"&gt;&lt;/script&gt;</code><br />
+                                        <code class="snippet">&lt;script type="text/javascript" src="pcmsDomain/pcms_scripts.min.js"&gt;&lt;/script&gt;</code>
+                                    </span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button class="btn btn-primary submit_form" type="submit">Upload Save</button>
+                                    <a class="btn btn-primary" type="reset" href="@Url.Action("Index", "Home")" >Clear</a>
+                                    <a href="#" class="btn btn-success verify_sdk" disabled="true">Verify SDK</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

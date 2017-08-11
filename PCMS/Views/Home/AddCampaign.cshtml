@@ -1,0 +1,176 @@
+﻿@{
+    ViewBag.Title = "AddCampaign";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddCampaign", "Home", FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+{
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Add Campaign</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-success alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> @ViewBag.Message</div>
+                    }
+
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <div class='col-md-6'>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Campaign Name:<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="campaign_name" name="campaign_name" pattern="[0-9a-zA-Z ]{2,25}" title="maximum 25 characters allowed" required="required" class="form-control col-md-7 col-xs-12" placeholder="Campaign Name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Start Date:<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class=" xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal1" name="startdate" placeholder="Start Date" aria-describedby="inputSuccess2Status" required="required" />
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                        Campaign Desc:
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea id="last-name" name="Description" class="form-control col-md-7 col-xs-12"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Campaign URL:<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="urlnamecm" name="campaignurl" required="required" pattern="[a-zA-Z-_#0-9\\/.:]{2,1500}" title="only alphanumeric with -_#/ special characters allowed" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Design/Content:</label>
+                                    <div class='col-md-6 col-sm-6 col-xs-12'>
+                                        <select id="design_content" name="design_content" class="form-control">
+                                            <option value="">Choose..</option>
+                                            <option value="Design">Design</option>
+                                            <option value="Content">Content</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="design_list">
+                                    <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Design List:</label>
+                                    <div class='col-md-6 col-sm-6 col-xs-12'>
+                                        @{Html.RenderAction("DesignTemplates", "Home");}
+                                    </div>
+                                </div>
+                                <div class="form-group" id="content_list">
+                                    <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Content List:</label>
+                                    <div class='col-md-6 col-sm-6 col-xs-12'>
+                                        @{Html.RenderAction("ContentTemplates", "Home");}
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Popup:</label>
+                                    <div class='col-md-6 col-sm-6 col-xs-12'>
+                                        <select id="popup" name="popup" class="form-control">
+                                            <option value="">No Popup</option>
+                                            <option value="Entry Popup">Entry Popup</option>
+                                            <option value="Exit Popup">Exit Popup</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Popup list:</label>
+                                    <div class='col-md-6 col-sm-6 col-xs-12'>
+                                        @{Html.RenderAction("PopupTemplates", "Home");}
+
+                                    </div>
+                                </div>
+
+
+                                <div class="ln_solid"></div>
+                            </div>
+                            <div class='col-md-6'>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Container ID:
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="conatiner-name" name="containerid" class="form-control col-md-7 col-xs-12" placeholder="Container ID" />
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>End Date:</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal2" name="endDate" placeholder="End Date" aria-describedby="inputSuccess2Status2">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="inputSuccess2Status2" class="sr-only">(success)</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Campaign Status:</label>
+                                    <input type="hidden" id="statuss" value="Active" name="campaingstatus" />
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div id="gender" class="btn-group campaign" data-toggle="buttons">
+                                            <label class="btn btn-default status_selector" data-toggle-class="btn-default" data-value="Active" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="Active" data-id="Active" class="activet" value="Active" />
+                                                Active
+                                            </label>
+                                            <label class="btn btn-default status_selector" data-toggle-class="btn-default" data-value="On hold" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="On hold" data-id="On hold" class="onholdt" value="On hold" />
+                                                On hold
+                                            </label>
+                                            <label class="btn btn-default status_selector" data-toggle-class="btn-default" data-value="Enabled" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="Enabled" data-id="Enabled" class="enabledt" value="Enabled" />
+                                                Enabled
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Redirect URL:
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="url-name" name="redirecturl" pattern="[a-zA-Z0-9-_#\\/.:]{2,1500}" title="only alphanumeric with -:_#/ special characters allowed" class="form-control col-md-7 col-xs-12" placeholder="Redirect URL" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="heard" class='control-label col-md-3 col-sm-3 col-xs-12'>Rule:</label>
+                                    <div class='col-md-6 col-sm-6 col-xs-12'>
+                                        @{Html.RenderAction("ListofRules", "Home");}
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="">
+                                <a href='@Url.Action("Index", "Home")' type="button" class="btn btn-primary">Cancel</a>
+                                <button class="btn btn-primary" type="reset">Reset</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

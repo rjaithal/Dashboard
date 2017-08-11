@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="../vendors/bootstrap-wysiwyg/js/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../css/custom.min.css" rel="stylesheet">
+    <link href="../css/editor.css" rel="stylesheet">
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/ckeditor/ckeditor.js"></script>
+    <script src="../vendors/ckeditor/samples/js/sample.js"></script>
+    <link rel="stylesheet" href="../vendors/ckeditor/samples/css/samples.css">
+    <link rel="stylesheet" href="../vendors/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+    <style>
+        .control-label{
+            font-size:12px !important;
+        }
+        .required{
+            color:red;
+        }
+        .url-list-buttons{
+            margin-right:0px !important;
+            padding:5px 5px !important;
+            font-size:13px;
+        }
+    </style>
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-list"></i><span>PCMS</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+
+                        <div class="profile_info">
+                            <span>Welcome, Admin</span>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li><a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i>Dashboard </a></li>
+                                <li><a href='@Url.Action("AddCampaign", "Home")'><i class="fa fa-star"></i>Campaigns </a></li>
+                                <li><a href='@Url.Action("URLList", "Home", new { empty = "list" })'><i class="fa fa-list"></i>Rules </a></li>
+                                <li><a href='@Url.Action("Design", "Home")'><i class="fa fa-image"></i>Design </a></li>
+                                <li><a href='@Url.Action("Content", "Home")'><i class="fa fa-pencil"></i>Content </a></li>
+                                <li><a href='@Url.Action("Popup", "Home")'><i class="fa fa-square"></i>Popups </a></li>
+                                <li><a href='@Url.Action("URLList", "Home")'><i class="fa fa-globe"></i>Add URL </a></li>
+                                <li><a href='@Url.Action("Website", "Home")'><i class="fa fa-globe"></i>Add Website </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            @RenderBody()
+            <!-- /page content -->
+            <footer>
+                <div class="pull-right">
+                    PCMS Dashboard
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    <!-- jQuery -->
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="../vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="../vendors/bootstrap-wysiwyg/js/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript" src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysihtml5.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../js/custom.min.js"></script>
+    <script src="../js/editor.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#addURLS").click(function () {
+                $("#hidden").toggleClass("hidden");
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tags_1_tag").attr("readonly", "true");
+            $("#tags_1_addTag").hide();
+            $("#append_rule").click(function () {
+                var _k = $("#param_key");
+                var _v = $("#param_value");
+                var _l = $("#parameter_list");
+                if (_k.val() != "-1" && _v.val() != "-1") {
+                    var _j = (_l.val().trim() == "") ? [] : JSON.parse(_l.val());
+                    var obj = { key: _k.val(), value: _v.val() };
+                    _j.push(obj);
+                    _l.val(JSON.stringify(_j));
+                    var span = "<span class='tag'><span>" + _k.val() + " = " + _v.val() + "</span></span>";
+                    $("#tags_1_tagsinput").append(span);
+                    _k.val("-1");
+                    _v.val("-1");
+                    _v.children("option:gt(0)").hide();
+                } else {
+                    alert("Please select an appropriate parameter and its value.");
+                }
+            });
+            var _k = $("#param_key");
+            var _v = $("#param_value");
+            _v.children("option:gt(0)").hide();
+            _k.on("change", function () {
+                _v.children("option:gt(0)").hide();
+                switch (_k.val()) {
+                    case ("Gender"):
+                        _v.children("option").each(function () {
+                            if (($(this).val() == "Male") || ($(this).val() == "Female")) {
+                                $(this).show();
+                            }
+                        });
+                        break;
+                    case ("Device"):
+                        _v.children("option").each(function () {
+                            if (($(this).val() == "Mobile") || ($(this).val() == "Desktop") || ($(this).val() == "Tablet")) {
+                                $(this).show();
+                            }
+                        });
+                        break;
+                    case ("Channel"):
+                        _v.children("option").each(function () {
+                            if (($(this).val() == "Facebook") || ($(this).val() == "Twitter") || ($(this).val() == "Google") || ($(this).val() == "Email") || ($(this).val() == "LinkedIn") || ($(this).val() == "Instagram")) {
+                                $(this).show();
+                            }
+                        });
+                        break;
+                    case ("OS"):
+                        _v.children("option").each(function () {
+                            if (($(this).val() == "Android") || ($(this).val() == "iOS") || ($(this).val() == "Windows") || ($(this).val() == "MacOS") || ($(this).val() == "Linux")) {
+                                $(this).show();
+                            }
+                        });
+                        break;
+                    case ("Browser"):
+                        _v.children("option").each(function () {
+                            if (($(this).val() == "Chrome") || ($(this).val() == "Firefox") || ($(this).val() == "IE") || ($(this).val() == "Safari") || ($(this).val() == "Opera")) {
+                                $(this).show();
+                            }
+                        });
+                        break;
+                    case ("User Type"):
+                        _v.children("option").each(function () {
+                            if (($(this).val() == "New User") || ($(this).val() == "Returning User")) {
+                                $(this).show();
+                            }
+                        });
+                        break;
+                    default:
+                        _v.children("option:gt(0)").hide();
+                        break;
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var _v = $("#statuss").val();
+            _v = (_v == undefined) ? '' : _v.toLowerCase();
+            if (_v == 'active') {
+                $(".activet").parent().addClass("active");
+                $(".onholdt").parent().removeClass("active");
+                $(".enabledt").parent().removeClass("active");
+            } else if (_v == 'on hold') {
+                $(".activet").parent().removeClass("active");
+                $(".onholdt").parent().addClass("active");
+                $(".enabledt").parent().removeClass("active");
+            } else {
+                $(".activet").parent().removeClass("active");
+                $(".onholdt").parent().removeClass("active");
+                $(".enabledt").parent().addClass("active");
+            }
+            $(".status_selector").on("click", function () {
+                $("#statuss").val($(this).data("value"));
+            });
+            $("#ajax_loader").hide();
+            $(".submit_form").attr("disabled", true);
+            $(".sdk_verification_message").hide();
+            $(".sdk_script").hide();
+            $(".website_url").on("focus", function () {
+                $(".sdk_script").hide();
+                $(".sdk_verification_message").hide();
+            });
+            $(".website_url").on("blur", function () {
+                var _t = $(this).val().toLowerCase();
+                var prefix = 'http://';
+                var prefix2 = 'https://';
+                if (_t.substr(0, prefix.length) !== prefix) {
+                    if (_t.substr(0, prefix2.length) !== prefix2) {
+                        _t = prefix + _t;
+                    }
+                }
+                $("#ajax_loader").show();
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://csepp.in/ma/getpageresponse.php?url=' + _t,
+                    dataType: 'json'
+                }).done(function (_d) {
+                    if (_d.status == 'success' && _d.data.exist == true) {
+                        $(".verify_sdk").attr("disabled", false);
+                        $(".submit_form").attr("disabled", false);
+                        $(".sdk_verification_message").hide();
+                    } else {
+                        $(".verify_sdk").attr("disabled", true);
+                        $(".submit_form").attr("disabled", true);
+                        $(".sdk_verification_message").html("Not a valid website. Please check the website.");
+                        $(".sdk_verification_message").show();
+                    }
+                    $("#ajax_loader").hide();
+                });
+            });
+            $(".verify_sdk").on("click", function () {
+                $("#ajax_loader").show();
+                var _t = $(".website_url").val().toLowerCase();
+                var prefix = 'http://';
+                var prefix2 = 'https://';
+                if (_t.substr(0, prefix.length) !== prefix) {
+                    if (_t.substr(0, prefix2.length) !== prefix2) {
+                        _t = prefix + _t;
+                    }
+                }
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://csepp.in/ma/getpageresponse.php?url=' + _t,
+                    dataType: 'json'
+                }).done(function (_d) {
+                    if (_d.status == 'success' && _d.data.scripts > 0) {
+                        $(".sdk_verification_message").html("SDK verified successfully.");
+                        $(".sdk_verification_message").show();
+                        setTimeout(function () {
+                            $(".sdk_verification_message").hide();
+                        }, 3000);
+                    } else {
+                        $(".sdk_verification_message").html("SDK verification unsuccessful. Please include the following scripts in your website.");
+                        $(".sdk_verification_message").show();
+                        $(".sdk_script").show();
+                    }
+                    $("#ajax_loader").hide();
+                });
+            });
+            $(".urladd").click(function () {
+
+
+                $.ajax({
+                    url: '@Url.Action("GetURLData", "Home")',
+                    type: "GET",
+                    async: false,
+                    data: {
+                        rowcount: $(this).data("id")
+                    },
+                    success: function (data) {
+                        $("#loadData").html();
+                        $("#loadData").html(data);
+                        $("#myModal").modal('show');
+                    },
+                    error: function () { }
+                });
+            });
+            $("#design_content").change(function () {
+                var a = $(this).val();
+                if (a == "Design") {
+                    $("#design_list").show();
+                    $("#content_list").hide();
+                } else if (a == "Content") {
+                    $("#design_list").hide();
+                    $("#content_list").show();
+                } else {
+                    $("#design_list").hide();
+                    $("#content_list").hide();
+                }
+            });
+            $("#design_list").hide();
+            $("#content_list").hide();
+            $('#example').DataTable();
+            $(".activet").click(function () {
+                var campaign1 = $("input[type='radio']:checked").val();
+                alert(campaign1);
+            });
+            initSample();
+        });
+    </script>
+
+</body>
+</html>

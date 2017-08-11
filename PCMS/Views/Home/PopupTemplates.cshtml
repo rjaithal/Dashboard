@@ -1,0 +1,9 @@
+﻿@model IEnumerable<PCMS_Library.pcms_popup>
+<select id="popuplist" name="popuplist" class="form-control">
+    <option value="">Choose..</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.POPUP_ID">@item.POPUP_NAME</option>
+ 
+    }
+</select>

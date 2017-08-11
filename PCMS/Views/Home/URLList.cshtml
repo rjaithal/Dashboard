@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PCMS_Library.pcms_rules>
+
+@{
+    ViewBag.Title = "URLList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Banner</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div>
+                            @if (ViewBag.Success != null)
+                            { <div class="text-center">@ViewBag.Success</div>}
+                            <button id="addURLS" class="btn btn-md btn-primary">Add URL</button>
+                            <div class="row hidden" id="hidden">
+                                @using (Html.BeginForm("AddURI", "Home", FormMethod.Post))
+                                {
+                                    /* if (TempData["Error"] != null || string.IsNullOrEmpty(TempData["Error"].ToString()))
+                                     {
+                                         <div class="text-center row">@TempData["Error"].ToString()</div>
+                                     }*/
+                                    Html.RenderAction("AddURI", "Home", null);
+                                }
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                    <tr class="headings">
+                                        <th class="column-title">Sr. No.</th>
+                                        <th class="column-title">Web site</th>
+                                        <th class="column-title">URL</th>
+                                        <th class="column-title no-link last">
+                                            <span class="nobr">Action</span>
+                                        </th>
+                                        <th class="bulk-actions" colspan="7">
+                                            <a class="antoo" style="color: #fff; font-weight: 500;">Bulk Actions ( <span class="action-cnt"></span>) <i class="fa fa-chevron-down"></i></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int i = 1;
+                                       foreach (var item in @Model)
+                                       {
+                                        <tr class="even pointer">
+                                            <td class="">@i</td>
+                                            <td class="">@item.WEBSITE_URL</td>
+                                            <td class="">@item.RULE_APPLIED_URL</td>
+                                            <td class="">
+                                                <button class="btn btn-primary urladd hidden" id="urladd"  data-toggle="modal" data-id=" @item.RULE_ID ">Update URL</button>
+                                                <a class="btn btn-primary url-list-buttons" href="@Url.Action("Rules", "Home", new { query = @item.RULE_ID })">Apply Rules</a>
+                                                <a class="btn btn-primary url-list-buttons" href="@Url.Action("GetCampaignList", "Home", new { query = @item.RULE_ID })">List Campaigns
+                                                </a>
+                                                <a class="btn btn-primary url-list-buttons" href="@Url.Action("DeleteRules", "Home", new { query = @item.RULE_ID })">
+                                                    <i class="success fa fa-trash" style='font-size: 15px;' onclick="confirm('Are you sure you want to delete?')"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                           i++;
+                                       }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal myModal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update URL</h4>
+            </div>
+            <div class="modal-body">
+                <div id="loadData"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

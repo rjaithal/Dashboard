@@ -1,0 +1,55 @@
+﻿@model PCMS_Library.pcms_design
+
+@{
+    ViewBag.Title = "AddDesign";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("AddDesign", "Home", FormMethod.Post))
+{
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Create Design</h3>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="text-center">
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="row text-center">@ViewBag.Error</div>
+                        }
+                    </div>
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div id="alerts"></div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <label for="" class="control-label">Design Name<span class="required">*</span>:</label>
+                                    @Html.TextBoxFor(m => m.DESIGN_NAME, null, new { @class = "form-control", required = "", pattern = "[0-9a-zA-Z-_#\\s]{2,25}", title = "Maximum 25 characters allowed -_# special characters" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <label for="" class="control-label">Design Description:</label>
+                                    @Html.TextBoxFor(m => m.DESIGN_DESCRIPTION, null, new { @class = "form-control", pattern = "[0-9a-zA-Z-_#\\s]{2,150}", title = "Maximum 150 characters allowed -_# special characters" })
+                                </div>
+                            </div>
+                            <label for="" class="control-label">Design Body:</label>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    @Html.TextAreaFor(m => m.DESIGN_HTML, new { @class = "form-control", id = "editor", style = "height:50px" })
+
+
+                                </div>
+                            </div>
+                            <br />
+                            <button class='btn btn-primary' type="submit">Save</button>
+                            <button class='btn btn-warning'>Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

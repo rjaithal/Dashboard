@@ -1,0 +1,20 @@
+﻿@model IEnumerable<PCMS_Library.pcms_website>
+<div class="col-md-12">
+    <div class="col-md-4 col-sm-4">
+        <label for="weburlitem"  class="control-label">Web site url</label>
+        <select name="weburlitem" required="" class="form-control">
+            <option value="">--SELECT--</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.WEBSITE_URL">@item.WEBSITE_URL</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4 col-sm-4">
+        <label for="weburlitem" class="control-label">Rules url</label>
+        <input type="text" name="rulesuri" required="" class="form-control" pattern = "[0-9a-zA-Z-_#.:/]{2,1500}" title="only alphanumeric with -_#/ special characters allowed" />
+    </div>
+    <div class="col-md-4 col-sm-4"><br/>
+        <input type="submit" class="form-control btn btn-md btn-primary" value="Add URL" />
+    </div>
+</div>
